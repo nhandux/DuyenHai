@@ -1,0 +1,147 @@
+<?php
+if (!defined('TTH_SYSTEM')) {die('Please stop!');}
+?>
+
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery/jquery-1.11.0.js"></script>
+
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.mmenu.min.all.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.easing.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.carousels-slider.min.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.popup/jquery.modal.min.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/auto-numeric.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/wow.min.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/script.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/gridify.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.popup/jquery.boxes.js"></script>
+<script type="text/javascript" src="<?php echo HOME_URL;?>/js/jquery.popup/jquery.boxes.repopup.js"></script>
+
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<?php echo HOME_URL;?>/js/lightslider.js"></script>
+<script src="<?php echo HOME_URL;?>/js/slider.js"></script>
+<script src="<?php echo HOME_URL;?>/js/jssor.slider.min.js"></script>
+
+<!-- <script>
+ new WOW().init();
+</script> -->
+<script type="text/javascript">
+function showHideGB(){
+var gb = document.getElementById("gb");
+var w = gb.offsetWidth;
+gb.opened ? moveGB(0, 75-w) : moveGB(71-w, 0);
+gb.opened = !gb.opened;
+}
+function moveGB(x0, xf){
+var gb = document.getElementById("gb");
+var dx = Math.abs(x0-xf) > 10 ? 5 : 1;
+var dir = xf>x0 ? 1 : -1;
+var x = x0 + dx * dir;
+gb.style.right = x.toString() + "px";
+if(x0!=xf){setTimeout("moveGB("+x+", "+xf+")", 10);}
+}
+</script>
+ <script>
+       $(document).ready(function() {
+       slider = $("#contentnernew-slider").lightSlider({
+            item:1,
+            loop:true,
+            auto:true,
+             speed: 500,
+            pauseOnHover: true,
+            keyPress:true
+
+        });
+      slider = $("#content-slider").lightSlider({
+                item:4,
+                loop:true,
+                auto:true,
+                pauseOnHover: true,
+                keyPress:true,
+                responsive: [
+                {
+                  breakpoint: 480,
+                  settings: {
+                    item: 1,
+                     auto:false,
+                  }
+                }
+              ]
+            });
+      $('#goToPrevSlide').click(function(){
+        slider.goToPrevSlide();
+          });
+     $('#goToNextSlide').click(function(){
+        slider.goToNextSlide();
+    });
+      });
+
+  // trược menu
+
+  jQuery(document).ready(function($) {
+     $(".hamburger").click(function(){
+       $(this).toggleClass("is-active")
+        $( ".mmenutop" ).toggle( "slide" );
+        if($('.hamburger').hasClass('is-active')){
+           $('body').css('overflow-y','hidden')
+           $('.baotrentoanbo').css('display','block')
+        }
+        else{
+           $('body').css('overflow-y','auto')
+           $('.baotrentoanbo').css('display','none')
+        }
+     })
+     $('.baotrentoanbo').click(function(event) {
+       /* Act on the event */
+        $('.baotrentoanbo').css('display','none')
+        $(".hamburger").removeClass('is-active')
+        $( ".mmenutop" ).toggle( "slide" );
+     });
+
+     $('.spandongmenu').click(function(event) {
+      $('body').css('overflow-y','auto')
+      $('.baotrentoanbo').css('display','none')
+      $(".hamburger").removeClass('is-active')
+       /* Act on the event */
+       $( ".mmenutop" ).toggle( "slide" );
+     });
+  var chieudai = window.innerHeight
+
+   $('.mmenutop').css('height',chieudai)
+
+  var nhan = window.innerWidth
+
+  if(chieudai < 640){
+    $('.mmenutop li').css('line-height','40px')
+  }
+
+  if(nhan > 1200)
+  {
+  var TopFixMenu = $(".menutop");
+    $(window).scroll(function(){
+        if($(this).scrollTop()>150){
+          TopFixMenu.css('transition','all 0.4s ')
+           $('.menutrentopright ul li').css('transition','all 0.4s ')
+         $('.menutrentopleft ul li').css('transition','all 0.4s ')
+         TopFixMenu.css('height','110px')
+         $('.menutrentopright ul li').css('line-height','60px')
+         $('.menutrentopleft ul li').css('line-height','60px')
+         $('.logotop').css('transition','all 0.4s')
+         $('.logotop').css('margin-top','-44px')
+        }else{
+
+         TopFixMenu.css('height','163px')
+         $('.menutrentopright ul li').css('line-height','90px')
+         $('.menutrentopleft ul li').css('line-height','90px')
+         $('.logotop').css('margin-top','-24px')
+        }}
+    )
+ }
+})
+    </script>
+
+<?php echo getConstant('google_analytics')?>
+<?php echo getConstant('chat_online')?>

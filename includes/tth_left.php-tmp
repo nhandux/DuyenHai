@@ -1,0 +1,52 @@
+<?php
+if (!defined('TTH_SYSTEM')) {die('Please stop!');}
+//-------------
+?>
+<!-- .content-right -->
+
+    <div class="sanpham_left">
+       <div class="baomenusp">
+       <div class="namedanhmucsp">
+        Sản phẩm
+       </div>
+       <div class="danhsachdanhmuc" >
+          <nav class="navdanhmucsanpham vimeo">
+                <ul>
+<?php $rows1 = getdmsp();
+foreach ($rows1 as $row1) {
+	# code...
+	?>
+	<li
+	<?php
+	if ($slug_cat == "san-pham") {
+		$urlht = $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		$xung  = explode('/', $urlht);
+		$demso = count($xung);
+		if ($demso >= 3) {
+			$slut_cate = $xung[2];
+			if ($slut_cate == $row1['slug']) {
+				echo 'class="activemenusp"';
+			}
+		}
+	}
+	?>
+	                >
+	                     <a href="<?=HOME_URL_LANG.'/san-pham/'.getSlugMenu($row1['product_menu_id'], 'product')?>"><?=$row1['name']?></a>
+	                    </li>
+	<?php }?>
+</ul>
+          </nav>
+       </div>
+     </div>
+      <!-- end danh muc sản phẩm -->
+    <div class="napquangcao">
+<?php
+$qc = getqc();
+foreach ($qc as $keyqc) {
+	?>
+	     <img src="<?=HOME_URL?>/uploads/gallery/gal-<?=$keyqc['img']?>" >
+	<?php }?>
+    </div>
+   </div>
+
+<!-- / .content-right -->

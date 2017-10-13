@@ -1,0 +1,46 @@
+<?php
+if (!defined('TTH_SYSTEM')) {die('Please stop!');}
+
+$photo_avt = '';
+$alt       = ($row['img_note'] != "")?stripslashes($row['img_note']):stripslashes($row['name']);
+if ($row['img'] != "" && $row['img'] != "no") {
+	$photo_avt = '<img src="'.HOME_URL.'/uploads/article/post-'.$row['img'].'" alt="'.$alt.'">';
+} else {
+	$photo_avt = '<img src="'.HOME_URL.'/images/404.jpg" alt="'.$alt.'">';
+}
+
+$time = '';
+if (in_array($slug_cat, array('news-event', 'tin-tuc-su-kien', 'tuyen-dung'))) {
+	$time         = ' <p class="time"><i class="fa fa-calendar fa-fw"></i> '.$date->vnFull($row['created_time']).'</p>';
+} else { $time = '';}
+
+$photo_avt = '<a href="'.HOME_URL_LANG.'/'.$slug_cat.'/'.getSlugMenu($row['article_menu_id'], 'article').'/'.$stringObj->getLinkHtml($row['name'], $row['article_id']).'" title="'.stripslashes($row['name']).'">'.$photo_avt.'</a>';
+$title     = '<h2><a href="'.HOME_URL_LANG.'/'.$slug_cat.'/'.getSlugMenu($row['article_menu_id'], 'article').'/'.$stringObj->getLinkHtml($row['name'], $row['article_id']).'" title="'.stripslashes($row['name']).'">'.stripslashes($row['name']).'</a></h2>';
+if ($slug_cat == "tin-tuc-su-kien") {
+	?>
+	    <li>
+	    <div class="baotinmoi">
+			<div class="chuatinhinh">
+	          <img src="<?=HOME_URL.'/uploads/article/'.$row['img']?>">
+			</div>
+			<div class="chuatenhinhanh">
+				<h1><a href="<?=HOME_URL.'/tin-tuc-su-kien/'.getSlugMenu($row['article_menu_id'], 'article').'/'.$stringObj->getLinkHtml($row['name'], $row['article_id'])?>"><?=$row['name']?></a></h1>
+				<div class="noidunghienthitinanh1">
+	<?=$row['comment']?>
+	</div>
+
+			</div>
+	  </div>
+		</li>
+
+	<?php } else {?>
+	<div class="item">
+		<div class="box">
+			<div class="img"><?php echo $photo_avt;?></div>
+			<div class="comment">
+	<?php echo $title;?>
+				<?php echo $time;?>
+				<p><?php echo $stringObj->crop(stripslashes($row['comment']), 30);?></p>
+			</div>
+		</div>
+	</div><?php }?>
